@@ -84,6 +84,37 @@ mongoose.connect('mongodb://127.0.0.1:27017/quiz')
 //     });
 // });
 
+// const ChemistryResult = require('./models/ChemistryResult.js');
+// const PhysicsResult = require('./models/PhysicsResult.js');
+
+// app.get('/results/chemistry', async (req, res) => {
+//   try {
+//     const results = await ChemistryResult.find();
+//     const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
+//     const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
+//     const percentage = (obtainedMarks / totalMarks) * 100;
+//     res.json({ totalMarks, obtainedMarks, percentage });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send('Server error');
+//   }
+// });
+
+// app.get('/results/physics', async (req, res) => {
+//   try {
+//     const results = await PhysicsResult.find();
+//     const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
+//     const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
+//     const percentage = (obtainedMarks / totalMarks) * 100;
+//     res.json({ totalMarks, obtainedMarks, percentage });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send('Server error');
+//   }
+// });
+
+ 
+
 
 
 
