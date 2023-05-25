@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const physicsQuestionSchema = new mongoose.Schema({
+const chemistryQuestionSchema = new mongoose.Schema({ 
   questionNO: { type: Number, required: true },
   questionText: { type: String, required: true },
   optionA: { type: String, required: true },
@@ -11,6 +11,6 @@ const physicsQuestionSchema = new mongoose.Schema({
   chapter: { type: String, required: true }
 });
 
-const PhysicsQuestion = mongoose.model('PhysicsQuestion', physicsQuestionSchema);
+const ChemistryQuestion = mongoose.model('ChemistryQuestion', chemistryQuestionSchema);
 
-module.exports = PhysicsQuestion;
+module.exports = ChemistryQuestion;

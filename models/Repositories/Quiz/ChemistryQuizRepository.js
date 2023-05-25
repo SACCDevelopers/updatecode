@@ -1,12 +1,12 @@
-const Question = require('../Question');
-const Result=require('../ChemistryResult');
+const Question = require('../../ChemistryQuestion');
+const Result=require('../../ChemistryResult');
 
 
 const GetQuestions =  (req, res) => {
     const chapter = req.query.chapter || 'Reaction Kinetics';
     Question.aggregate([
       { $match: { chapter: chapter } },
-      { $sample: { size: 3 } }
+      { $sample: { size: 10 } }
     ]).then(questions => {
       res.json(questions);
     }).catch(error => {

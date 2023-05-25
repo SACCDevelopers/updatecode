@@ -1,9 +1,9 @@
-const Question = require('../PhysicsQuestions');
-const Result=require('../PhysicsResult');
+const Question = require('../../PhysicsQuestions');
+const Result=require('../../PhysicsResult');
 
 
 const GetQuestions =  (req, res) => {
-    const chapter = req.query.chapter || 'Physics';
+    const chapter = req.query.chapter || 'Speed';
     Question.aggregate([
       { $match: { chapter: chapter } },
       { $sample: { size: 3 } }

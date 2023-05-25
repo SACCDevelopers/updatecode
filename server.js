@@ -11,9 +11,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-const chemistry=require("./Controllers/ChemistryQuizController.js"); 
-const physics=require("./Controllers/PhysicsQuizController.js"); 
-
+const chemistry=require("./Controllers/Quiz/ChemistryQuizController"); 
+const physics=require("./Controllers/Quiz/PhysicsQuizController"); 
+const uet=require("./Controllers/Quiz/UETQuizController.js"); 
+const physicsGraph=require("./Controllers/Graphs/PhysicsGraphsController.js"); 
 
 mongoose.connect('mongodb://127.0.0.1:27017/quiz')
   .then(() => {
@@ -84,21 +85,39 @@ mongoose.connect('mongodb://127.0.0.1:27017/quiz')
 //     });
 // });
 
-// const ChemistryResult = require('./models/ChemistryResult.js');
+const ChemistryResult = require('./models/ChemistryResult.js');
 // const PhysicsResult = require('./models/PhysicsResult.js');
+const UETResult = require('./models/UETResult.js');
 
-// app.get('/results/chemistry', async (req, res) => {
-//   try {
-//     const results = await ChemistryResult.find();
-//     const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
-//     const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
-//     const percentage = (obtainedMarks / totalMarks) * 100;
-//     res.json({ totalMarks, obtainedMarks, percentage });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send('Server error');
-//   }
-// });
+//Getting chemistry results for graph plot
+app.get('/results/chemistry', async (req, res) => {
+  try {
+    const results = await ChemistryResult.find();
+    const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
+    const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
+    const percentage = (obtainedMarks / totalMarks) * 100;
+    res.json({ totalMarks, obtainedMarks, percentage });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+
+
+//Getting UET results for graph plot
+app.get('/results/uet', async (req, res) => {
+  try {
+    const results = await UETResult.find();
+    const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
+    const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
+    const percentage = (obtainedMarks / totalMarks) * 100;
+    res.json({ totalMarks, obtainedMarks, percentage });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
 
 // app.get('/results/physics', async (req, res) => {
 //   try {
@@ -121,5 +140,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/quiz')
 
 app.use('/api/ChemistryQuiz',chemistry); 
 app.use('/api/PhysicsQuiz',physics); 
+app.use('/api/UETQuiz',uet); 
+app.use('/api/PhysicsGraphs',physicsGraph); 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
