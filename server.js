@@ -11,17 +11,17 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-const chemistry=require("./Controllers/Quiz/ChemistryQuizController"); 
-const physics=require("./Controllers/Quiz/PhysicsQuizController"); 
-const uet=require("./Controllers/Quiz/UETQuizController.js"); 
-const physicsGraph=require("./Controllers/Graphs/PhysicsGraphsController.js"); 
-const ChemistryGraph = require("./Controllers/Graphs/ChemistryGraphsController.js");
+// const chemistry=require("./Controllers/Quiz/ChemistryQuizController"); 
+// const physics=require("./Controllers/Quiz/PhysicsQuizController"); 
+const ecat=require("./Controllers/Quiz/ECATQuizController.js"); 
+// const physicsGraph=require("./Controllers/Graphs/PhysicsGraphsController.js"); 
+// const ChemistryGraph = require("./Controllers/Graphs/ChemistryGraphsController.js");
 // const MathsGraph = require("./Controllers/MathsGraphsController.js");
 // const ComputerGraph=require("./Controllers/Graphs/ComputerGraphsController.js"); 
 // const EnglishGraph=require("./Controllers/Graphs/EnglishGraphsController.js"); 
 // const BasicMathsGraph=require("./Controllers/Graphs/BasicMathsGraphsController.js"); 
 // const IQGraph=require("./Controllers/Graphs/IQGraphsController.js"); 
-// const ECATGraph=require("./Controllers/Graphs/ECATGraphsController.js"); 
+const ECATGraph=require("./Controllers/Graphs/ECATGraphsController.js"); 
 // const NTSGraph=require("./Controllers/Graphs/NTSGraphsController.js"); 
 // const ComsatsGraph=require("./Controllers/Graphs/ComsatsGraphsController.js"); 
 // const FASTGraph=require("./Controllers/Graphs/FASTGraphsController.js"); 
@@ -36,11 +36,11 @@ mongoose.connect('mongodb://127.0.0.1:27017/quiz')
   });
  
 
-app.use('/api/ChemistryQuiz',chemistry); 
-app.use('/api/PhysicsQuiz',physics); 
-app.use('/api/UETQuiz',uet); 
-app.use('/api/PhysicsGraphs',physicsGraph); 
-app.use('/api/ChemistryGraphs',ChemistryGraph); 
+// app.use('/api/ChemistryQuiz',chemistry); 
+// app.use('/api/PhysicsQuiz',physics); 
+// app.use('/api/ECATQuiz',ecat); 
+app.use('/api/ECATGraphs',ECATGraph); 
+// app.use('/api/ChemistryGraphs',ChemistryGraph); 
 // app.use('/api/MathsGraphs',MathsGraph); 
 
 const PORT = process.env.PORT || 5000;

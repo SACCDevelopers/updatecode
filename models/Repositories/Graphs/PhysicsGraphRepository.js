@@ -1,10 +1,10 @@
  
-const Physics=require('../../PhysicsResult.js');
+const obj=require('../../ModelSchema');
 
 
 const GetGraphs =  async (req, res) => {
     try {
-      const results = await Physics.find();
+      const results = await obj.PhysicsResult.find();
       const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
       const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
       const percentage = (obtainedMarks / totalMarks) * 100;

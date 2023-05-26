@@ -1,10 +1,10 @@
  
-const Chemistry=require('../../ChemistryResult.js');
+const obj=require('../../ModelSchema');
 
 
 const GetGraphs =  async (req, res) => {
     try {
-      const results = await Chemistry.find();
+      const results = await obj.ChemistryResult.find();
       const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
       const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
       const percentage = (obtainedMarks / totalMarks) * 100;

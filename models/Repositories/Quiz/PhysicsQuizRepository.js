@@ -1,12 +1,11 @@
-const Question = require('../../PhysicsQuestions');
-const Result=require('../../PhysicsResult');
+const obj = require('../../ModelSchema'); 
 
 
 const GetQuestions =  (req, res) => {
     const chapter = req.query.chapter || 'Speed';
-    Question.aggregate([
+    obj.PhysicsQuestion.aggregate([
       { $match: { chapter: chapter } },
-      { $sample: { size: 3 } }
+      { $sample: { size: 10 } }
     ]).then(questions => {
       res.json(questions);
     }).catch(error => {
@@ -17,7 +16,7 @@ const GetQuestions =  (req, res) => {
 
 
 const PostResult = async (req, res) => {
-    const result = new Result({
+    const result = new obj.PhysicsResult({
       chapter: req.body.chapter,
       totalMarks: req.body.totalMarks,
       obtainedMarks: req.body.obtainedMarks,

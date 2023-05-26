@@ -1,6 +1,6 @@
 const express=require('express');
 const router=express.Router();
-const pq_rep=require("../../models/Repositories/Quiz/UETQuizRepository");
+const pq_rep=require("../../models/Repositories/Quiz/NTSQuizRepository");
  
 
 router.get('/Questions',pq_rep.GetQuestions)

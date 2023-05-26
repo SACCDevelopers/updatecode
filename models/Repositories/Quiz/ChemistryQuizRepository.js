@@ -1,10 +1,9 @@
-const Question = require('../../ChemistryQuestion');
-const Result=require('../../ChemistryResult');
+const obj = require('../../ModelSchema'); 
 
 
 const GetQuestions =  (req, res) => {
     const chapter = req.query.chapter || 'Reaction Kinetics';
-    Question.aggregate([
+    obj.ChemistryQuestion.aggregate([
       { $match: { chapter: chapter } },
       { $sample: { size: 10 } }
     ]).then(questions => {
@@ -17,7 +16,7 @@ const GetQuestions =  (req, res) => {
 
 
 const PostResult = async (req, res) => {
-    const result = new Result({
+    const result = new obj.ChemistryResult({
       chapter: req.body.chapter,
       totalMarks: req.body.totalMarks,
       obtainedMarks: req.body.obtainedMarks,
