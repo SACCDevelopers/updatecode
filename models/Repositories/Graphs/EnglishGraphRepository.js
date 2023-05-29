@@ -15,6 +15,6 @@ const GetGraphs =  async (req, res) => {
     }
   }; 
 
-module.exports={
+module.exports={ 
     GetGraphs
 }

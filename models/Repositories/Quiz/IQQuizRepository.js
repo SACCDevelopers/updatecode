@@ -1,18 +1,19 @@
 const obj = require('../../ModelSchema'); 
 
 
-const GetQuestions =  (req, res) => {
-    const chapter = req.query.chapter || 'Puzzle';
-    obj.IQQuestion.aggregate([
-      { $match: { chapter: chapter } },
-      { $sample: { size: 10 } }
-    ]).then(questions => {
+const GetQuestions = (req, res) => {
+  obj.IQQuestion.aggregate([
+    { $sample: { size: 10 } }
+  ])
+    .then(questions => {
       res.json(questions);
-    }).catch(error => {
+    })
+    .catch(error => {
       console.error(error);
       res.status(500).send('Error fetching questions');
     });
-  };
+};
+
 
 
 const PostResult = async (req, res) => {

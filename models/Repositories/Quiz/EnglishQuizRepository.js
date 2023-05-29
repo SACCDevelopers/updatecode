@@ -2,7 +2,7 @@ const obj = require('../../ModelSchema');
 
 
 const GetQuestions =  (req, res) => {
-    const chapter = req.query.chapter || 'Verbs';
+    const chapter = req.query.chapter || 'Synonyms and Antonyms';
     obj.EnglishQuestion.aggregate([
       { $match: { chapter: chapter } },
       { $sample: { size: 10 } }

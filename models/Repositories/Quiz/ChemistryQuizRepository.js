@@ -2,10 +2,10 @@ const obj = require('../../ModelSchema');
 
 
 const GetQuestions =  (req, res) => {
-    const chapter = req.query.chapter || 'Reaction Kinetics';
+    const chapter = req.query.chapter || 'Atomic Structure';
     obj.ChemistryQuestion.aggregate([
       { $match: { chapter: chapter } },
-      { $sample: { size: 10 } }
+      { $sample: { size: 30 } }
     ]).then(questions => {
       res.json(questions);
     }).catch(error => {

@@ -2,7 +2,7 @@ const obj = require('../../ModelSchema');
 
 
 const GetQuestions =  (req, res) => {
-    const chapter = req.query.chapter || 'Programming';
+    const chapter = req.query.chapter || 'Data Communications';
     obj.ComputerQuestion.aggregate([
       { $match: { chapter: chapter } },
       { $sample: { size: 10 } }
