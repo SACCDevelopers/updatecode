@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const obj = require("./models/ModelSchema");
+const cookieParser = require("cookie-parser");
 const app = express();
 
 app.use(cors());
@@ -56,6 +57,177 @@ app.get('/api/students', async (req, res) => {
     res.status(500).json({ error: 'An error occurred while retrieving students' });
   }
 });
+
+app.get('/api/counselors', async (req, res) => {
+  try {
+    const counselors = await obj.counsellor.find({ Availability: true });
+    res.json(counselors);
+  } catch (error) {
+    console.error('Error retrieving counselors:', error);
+    res.status(500).json({ error: 'An error occurred while retrieving counselors' });
+  }
+});
+
+// POST /api/requests
+app.post('/api/requests', async (req, res) => {
+  try {
+    const requestData = req.body;
+
+    // Create a new request using the requestData
+    const newRequest = new obj.Request(requestData);
+
+    // Save the new request to the database
+    await newRequest.save();
+
+    res.status(201).json({ message: 'Request created successfully', request: newRequest });
+  } catch (error) {
+    console.error('Error creating request:', error);
+    res.status(500).json({ error: 'An error occurred while creating the request' });
+  }
+});
+
+
+app.get('/api/requestsOfStudents/:counselorName', async (req, res) => {
+  try {
+    const counselorName = req.params.counselorName;
+
+    // Group the requests by counselorName and retrieve distinct studentNames
+    const distinctStudentNames = await obj.Request.aggregate([
+      { $match: { counselorName } },
+      { $group: { _id: "$counselorName", studentNames: { $addToSet: "$studentName" } } },
+      { $project: { _id: 0, studentNames: 1 } }
+    ]);
+    // Extract the studentNames array from the aggregation result
+    const studentNamesSet = new Set(distinctStudentNames[0]?.studentNames || []);
+    const studentNames = Array.from(studentNamesSet);
+    // Retrieve the student information for the distinct student names
+    const students = await obj.student.find({ FirstName: { $in: studentNames } });
+
+    res.json(students);
+  } catch (error) {
+    console.error('Error fetching student data:', error);
+    res.status(500).json({ error: 'An error occurred while fetching student data' });
+  }
+});
+
+
+
+
+
+// API endpoint for BasicChemistryGraphs
+app.get('/api/ChemistryGraphs/Progress', async (req, res) => {
+  try {
+    const results = await obj.ChemistryResult.find();
+    const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
+    const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
+    const percentage = (obtainedMarks / totalMarks) * 100;
+    res.json({ totalMarks, obtainedMarks, percentage });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+// API endpoint for BasicPhysicsGraphs
+app.get('/api/PhysicsGraphs/Progress', async (req, res) => {
+  try {
+    const results = await obj.PhysicsResult.find();
+    const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
+    const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
+    const percentage = (obtainedMarks / totalMarks) * 100;
+    res.json({ totalMarks, obtainedMarks, percentage });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+// API endpoint for BasicMathsGraphs
+app.get('/api/MathsGraphs/Pogress', async (req, res) => {
+  try {
+    const results = await obj.MathsResult.find();
+    const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
+    const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
+    const percentage = (obtainedMarks / totalMarks) * 100;
+    res.json({ totalMarks, obtainedMarks, percentage });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+app.get('/api/IQGraphs/Progress', async (req, res) => {
+  try {
+    const results = await obj.IQResult.find();
+    const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
+    const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
+    const percentage = (obtainedMarks / totalMarks) * 100;
+    res.json({ totalMarks, obtainedMarks, percentage });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+app.get('/api/ComputerGraphs/Progress', async (req, res) => {
+  try {
+    const results = await obj.ComputerResult.find();
+    const totalMarks = results.reduce((acc, result) => acc + result.totalMarks, 0);
+    const obtainedMarks = results.reduce((acc, result) => acc + result.obtainedMarks, 0);
+    const percentage = (obtainedMarks / totalMarks) * 100;
+    res.json({ totalMarks, obtainedMarks, percentage });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+
+app.post("/api/student/signup", async (req, res) => {
+  const {
+    FirstName,
+    LastName,
+    Email,
+    PhoneNo,
+    Password,
+    Address,
+    ObtainedMatricMarks,
+    TotalMatricMarks,
+    ObtainedInterMarks,
+    TotalInterMarks,
+    FatherIncome,
+  } = req.body;
+
+  try {
+    const newStudent = new obj.student({
+      FirstName,
+      LastName,
+      Email,
+      PhoneNo,
+      Password,
+      Address,
+      ObtainedMatricMarks,
+      TotalMatricMarks,
+      ObtainedInterMarks,
+      TotalInterMarks,
+      FatherIncome,
+    });
+
+    await newStudent.save();
+    res.cookie("firstName", FirstName);
+    res.cookie("password", Password);
+    res.json({ message: "Signup successful" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "An error occurred" });
+  }
+});
+
+
+
+
+
+
+
 
 
 

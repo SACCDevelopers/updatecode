@@ -93,34 +93,18 @@ const studentSchema = new mongoose.Schema(
     Password: {
       type: String,
 
-    },
-
-    ProfilePic: {
-      type: String,
-
-    },
+    }, 
 
     Address: {
       type: String,
 
-    },
-
-
-    Gender: {
-      type: String,
-
-    },
+    }, 
 
 
     Status: {
       type: Boolean,
-
+      default: true
     }, 
-
-    Religion: {
-      type: String,
-
-    },
 
     ObtainedMatricMarks: {
       type: Number
@@ -149,11 +133,89 @@ const studentSchema = new mongoose.Schema(
 
 
   });
+//Defining Schema for counsellors
+
+const CounsellorSchema = new mongoose.Schema(
+  {
+
+    FirstName: {
+      type: String,
+
+    },
+
+    LastName: {
+      type: String,
+
+    },
+
+    Email: {
+      type: String,
+
+    },
+
+    PhoneNo: {
+      type: String,
+
+    },
+
+    Password: {
+      type: String,
+
+    }, 
+
+    Status: {
+      type: Boolean,
+      default: true
+    },
+
+    Experinence: {
+      type: String
+    },
+    Education: {
+      type: String
+    } ,
+    Availability: {
+      type: Boolean,
+      default: true
+    },
+    Status: {
+      type: String,
+    },
+    Rate: {
+      type: Number,
+    },
+    NoOfCounselling: {
+      type: Number
+    } 
+  }); 
+
+  const requestSchema = new mongoose.Schema({ 
+    studentName: {
+      type: String,
+      required: true,
+    },
+    counselorName: {
+      type: String,
+      required: true,
+    },
+    requestDate: {
+      type: Date,
+      default: Date.now,
+    },
+    status: {
+      type: String,
+      enum: ['pending', 'accepted', 'declined'],
+      default: 'pending',
+    }, 
+  });
+  
+  const Request = mongoose.model('Request', requestSchema); 
 
 
-//Student 
+
+//Student and Counsellor
 const student = mongoose.model('student', studentSchema);
-
+const counsellor = mongoose.model('counsellor', CounsellorSchema);
 
 
 //Subject Questions
@@ -212,6 +274,8 @@ module.exports = {
   FastResult,
   FcitResult,
   NtsResult,
-  ComsatsResult, 
-  student
+  ComsatsResult,
+  student,
+  counsellor,
+  Request
 };
