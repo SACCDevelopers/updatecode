@@ -1,0 +1,254 @@
+.profile-cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+@keyframes flyAnimation {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fly {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+.profile-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Display three cards per row */
+  gap: 20px; /* Add spacing between cards */
+  max-width: 900px; /* Limit the width of the card grid */
+  margin: 0 auto; /* Center the card grid on the page */
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 40px;
+  box-shadow: 0 2px 4px rgba(255, 213, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+  text-align: center;
+  animation: fly 1s ease-in-out forwards; 
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(255, 213, 0, 0.7);
+  }
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+.marks-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.marks-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.marks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mark-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 1px;
+}
+
+.mark-value {
+  font-size: 16px;
+  animation: flyAnimation 0.5s ease-in-out;
+  animation-delay: 1.2s;
+} 
+ 
+
+.Matric-marksOnCard,
+  .Inter-marksOnCard {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .spanOfMatricMarks,
+  .spanOfInterMarks {
+    font-size: 16px;
+  }
+
+
+.quizzes-percentage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+
+  .quizzes-percentagesOnCard {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .spanOfQuizzesPercentage {
+    font-size: 20px;
+    color: #22ff00;
+  }
+}
+.student-name {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+.profile-cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  text-align: center;
+} 
+
+
+.counselor-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+.counsellor-section {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.counsellor-rate {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.counsellor-value {
+  margin-right: 10px;
+}
+
+.experience-row,
+.counselor-row {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.counselor-label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.rate-row {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.rate-title {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.rate-value {
+  margin-right: 5px;
+}
+
+.request-link {
+  display: inline-block;
+  padding: 10px 10px;
+  background-color:  #f5f5f5;
+  color: black;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.3s; 
+  margin-top:10px;
+  border: 2px solid;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.request-link:hover {
+  background-color: rgb(178, 180, 173);
+}
+.request-link.requested {
+  /* Add your desired styles for the clicked button */
+  background-color: #e6d631;
+  color: #ffffff;
+  /* Add any other styles you want */
+}
+
+/* rgb(209, 211, 203)
+rgb(178, 180, 173) */
+
+
+
+
+@media (max-width: 900px) {
+  .profile-cards-grid {
+    grid-template-columns: repeat(2, 1fr); /* Display two cards per row on smaller screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-cards-grid {
+    grid-template-columns: repeat(1, 1fr); /* Display one card per row on even smaller screens */
+  }
+}

@@ -2,7 +2,8 @@ const obj = require('../../ModelSchema');
 
 
 const GetQuestions =  (req, res) => {
-    const chapter = req.query.chapter || 'Percentages';
+    const chapter = req.query.chapter ;
+    console.log(req.query.chapter);
     obj.BasicMathsQuestion.aggregate([
       { $match: { chapter: chapter } },
       { $sample: { size: 10 } }

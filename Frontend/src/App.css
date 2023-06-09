@@ -1,0 +1,263 @@
+.quiz-container {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+}
+body{
+  background-color: #FDF9E2;
+}
+.timer {
+  background-color: yellow;
+  color: black;
+  font-size: 2rem;
+  font-family: sans-serif;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  animation: change-color 1s linear infinite;
+}
+
+@keyframes change-color {
+  0% {
+    background-color: rgb(223, 223, 118);
+  }
+  50% {
+    background-color: rgb(249, 163, 1);
+  }
+  100% {
+    background-color: rgb(178, 98, 98);
+  } 
+}
+
+
+.question {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-family:'Quicksand';
+}
+
+.options {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-family:'Quicksand';
+}
+
+.options li {
+  margin-bottom: 10px;
+}
+
+.options label {
+  margin-left: 10px;
+}
+
+.next-button {
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.next-button:hover {
+  background-color: #7ac284;
+}
+
+
+.next-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+.question-count {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-weight: 500;
+  background-color: #f7f0b7;
+  border-radius: 10px;
+  border: 2px solid #f5c842; /* added border property */
+}
+.chart-container{
+  height:500px;
+  width:400px;
+}
+.percentage-container{
+  height:300px;
+  width:300px;
+}
+.results-container{
+  display: flex;
+}
+.correctAnswers{
+  background-color: rgb(255, 255, 255);
+  color: rgb(43, 210, 43);
+  font-weight: bold;
+  font-size: 20px; 
+}
+.green-score-circle {
+  display: inline-block;
+  background-color: rgb(43, 210, 43);
+  color: white;
+  border-radius: 50%;
+  padding: 2px 8px;
+}
+
+.quiz-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.quiz-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: inline-block;
+  background-color: rgba(213, 203, 95, 0.3);
+  color: #211a19;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 2px solid #000000;
+}
+
+
+.score-message {
+  margin-bottom: 20px;
+}
+
+.score-text {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.green-score,
+.red-score {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.green-score {
+  color: #4CAF50;
+}
+
+.red-score {
+  color: #F44336;
+}
+
+.green-message,
+.red-message {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.time-taken {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.wrong-attempts-heading {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.wrong-question {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.question-number {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.question-text {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.correct-answer {
+  font-size: 17px;
+  color: #22ff00;
+  margin-top: 5px;
+  background-color: rgb(255, 255, 255);
+  font-weight: bold;
+  border: 2px solid #000000;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+
+
+
+.red-score-circle {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 8px;
+}
+
+.score {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.green-message {
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(22, 220, 22);
+}
+
+.red-message {
+  font-weight: bold;
+  font-size: 20px;
+  color: red;
+}
+.wrong-attempts-heading {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  position: relative;
+  font-family:'Quicksand';
+}
+
+.wrong-attempts-heading::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: #ccc;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+}
+ 
+  
+.profile-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+
+
+

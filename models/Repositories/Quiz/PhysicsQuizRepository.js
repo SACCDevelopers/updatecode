@@ -2,8 +2,9 @@ const obj = require('../../ModelSchema');
 
 
 const GetQuestions =  (req, res) => {
-    const chapter = req.query.chapter || 'Speed';
-    obj.PhysicsQuestion.aggregate([
+  console.log(req.query.chapter);
+    const chapter = req.query.chapter ;
+     obj.PhysicsQuestion.aggregate([
       { $match: { chapter: chapter } },
       { $sample: { size: 10 } }
     ]).then(questions => {

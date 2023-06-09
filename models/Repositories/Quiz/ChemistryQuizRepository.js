@@ -2,6 +2,7 @@ const obj = require('../../ModelSchema');
 
 
 const GetQuestions =  (req, res) => {
+  console.log(req.query.chapter);
     const chapter = req.query.chapter || 'Atomic Structure';
     obj.ChemistryQuestion.aggregate([
       { $match: { chapter: chapter } },

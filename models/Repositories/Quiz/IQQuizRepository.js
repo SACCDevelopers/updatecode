@@ -3,7 +3,7 @@ const obj = require('../../ModelSchema');
 
 const GetQuestions = (req, res) => {
   obj.IQQuestion.aggregate([
-    { $sample: { size: 10 } }
+    { $sample: { size: 30 } }
   ])
     .then(questions => {
       res.json(questions);

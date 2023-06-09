@@ -180,6 +180,7 @@ const CounsellorSchema = new mongoose.Schema(
     },
     Status: {
       type: String,
+      default:true
     },
     Rate: {
       type: Number,

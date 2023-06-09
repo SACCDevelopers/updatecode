@@ -1,0 +1,60 @@
+#container{
+    
+    
+
+    padding-right: 1vw;
+    
+    
+}
+.signupHeading{
+    font-weight: 900;
+    text-align:center;
+}
+.signupPtag{
+    text-align:center;
+    font-style: oblique;
+}
+.signup_container{
+    background-color:rgb(226, 226, 244) ;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.inputbtn{
+    background-color: rgb(185, 185, 185);
+    border: 1px solid black;
+    color: black;
+}
+
+.text_background{
+    background-color: rgb(226, 226, 244);
+}
+.signupform_radius{
+    border-radius: 50px;
+    width: 70%;
+    
+}
+.signupform_leftside{
+    background-color: #f5f101;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    height: 39vw;
+    
+}
+.signupform_rightside{
+    padding-top: 5%;
+}
+.signup-radio{
+    margin-left: 50%;
+    
+}
+.signup_button{
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+    margin-left: 40%;
+    
+   
+}
+
+

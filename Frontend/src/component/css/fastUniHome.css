@@ -1,0 +1,86 @@
+.back {
+    background-color: rgb(239, 230, 220);
+    font-family: sans-serif;
+  }
+
+ 
+  .list-group-item-circle {
+      list-style-type: circle;
+  }
+
+  .borders {
+      border-bottom: 8px solid rgb(230, 230, 89);
+  }
+
+  .table-head {
+      background-color: rgb(230, 230, 89);
+  }
+
+  .table {
+      padding: 0;
+  }
+
+  .merit-border {
+      border: 3px solid black;
+  }
+
+  .oval-border {
+      border: 2px solid black;
+      border-radius: 50%/ 50%;
+  }
+
+  .black-border {
+
+      border: 2px solid black;
+      border-radius: 60%;
+  }
+
+  .main-list {
+      list-style-type: none;
+      padding-left: 1.3em;
+      text-indent: -1.3em;
+  }
+
+  .main-list:before {
+      content: "\2022";
+      /* Unicode character for bullet point */
+      color: white;
+      background-color: black;
+      border-radius: 50%;
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      text-align: center;
+      margin-right: 0.5em;
+  }
+
+
+      ul {
+        list-style-type: disc;
+        font-size: 1.2em;
+      }
+    
+      ul ul {
+        list-style-type: circle;
+        font-size: 1em;
+      }
+    
+.dot{
+    height: 20px;
+    width: 20px;
+    background-color: #000000;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+@font-face {
+    font-family: "MyCustomFont";
+    src: url("../../fonts/Quicksand-VariableFont_wght.ttf") format("truetype"),
+         url("../../fonts/Quicksand-VariableFont_wght.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: "MyCustomFont", sans-serif;
+  }

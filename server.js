@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const obj = require("./models/ModelSchema");
-const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser"); 
+
 const app = express();
 
 app.use(cors());
@@ -182,56 +183,225 @@ app.get('/api/ComputerGraphs/Progress', async (req, res) => {
 });
 
 
+// app.post("/api/student/signup", async (req, res) => {
+//   const {
+//     FirstName,
+//     LastName,
+//     Email,
+//     PhoneNo,
+//     Password,
+//     Address,
+//     ObtainedMatricMarks,
+//     TotalMatricMarks,
+//     ObtainedInterMarks,
+//     TotalInterMarks,
+//     FatherIncome,
+//   } = req.body;
+
+//   try {
+//     const newStudent = new obj.student({
+//       FirstName,
+//       LastName,
+//       Email,
+//       PhoneNo,
+//       Password,
+//       Address,
+//       ObtainedMatricMarks,
+//       TotalMatricMarks,
+//       ObtainedInterMarks,
+//       TotalInterMarks,
+//       FatherIncome,
+//     });
+
+//     await newStudent.save();
+//     res.cookie("firstName", FirstName);
+//     res.cookie("password", Password); 
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ message: "An error occurred" });
+//   }
+// });
+
+
+
+
+
+//Adding Student
+
 app.post("/api/student/signup", async (req, res) => {
-  const {
-    FirstName,
-    LastName,
-    Email,
-    PhoneNo,
-    Password,
-    Address,
-    ObtainedMatricMarks,
-    TotalMatricMarks,
-    ObtainedInterMarks,
-    TotalInterMarks,
-    FatherIncome,
-  } = req.body;
 
-  try {
-    const newStudent = new obj.student({
-      FirstName,
-      LastName,
-      Email,
-      PhoneNo,
-      Password,
-      Address,
-      ObtainedMatricMarks,
-      TotalMatricMarks,
-      ObtainedInterMarks,
-      TotalInterMarks,
-      FatherIncome,
-    });
+  try{
 
-    await newStudent.save();
-    res.cookie("firstName", FirstName);
-    res.cookie("password", Password);
-    res.json({ message: "Signup successful" });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "An error occurred" });
+    const student=new obj.student(req.body);
+    
+    await student.save();
+    res.status(200).json({message:"Student Added Successfully"});
+  }
+
+  catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+
+//adding new counsellor
+app.post("/api/counsellor/signup", async (req, res) => {
+
+  try{
+console.log(req.body);
+    const counsellor=new obj.counsellor(req.body);
+    
+    await counsellor.save();
+    res.status(200).json({message:"Counsellor Added Successfully"});
+  }
+
+  catch (err) {
+    res.status(400).json({ error: err.message });
   }
 });
 
 
 
+//Student Login 
+
+// app.post("/api/student/login", async (req, res) => {
+//   try {
+//     const student = await obj.student.find({Email:req.body.Email,Password:req.body.Password});
+//     if(student.length !=0 && student[0].Status==true)
+//     {
+//       res.status(200).json({result:true});
+  
+//     }
+//     else if(student.length !=0 && student[0].Status==false)
+//     {
+//       res.status(200).json({result:false});
+  
+//     }
+
+   
+//   } catch (err) {
+//     res.status(400).json({ error: err.message });
+//   }
+// });
 
 
 
 
+//Counsellor Login/Verify
+
+// app.post("/api/counsellor/login", async (req, res) => {
+//   try {
+//     console.log(req.body);
+//     const counsellor = await obj.counsellor.find({Email:req.body.Email,Password:req.body.Password});
+   
+//     if(counsellor.length !=0 && counsellor[0].Status==true)
+//     {
+//       console.log(req.body);
+//       res.status(200).json({result:true});
+  
+//     }
+//     else if(counsellor.length !=0 && counsellor[0].Status==false){
+//       res.status(200).json({result:false});
+//     }
+//   } catch (err) {
+//     res.status(400).json({ error: err.message });
+//   }
+// });
 
 
 
+app.post('/api/student/login', async (req, res) => {
+  
 
+  try {
+    // Find the user in the database
+    const student = await obj.student.findOne({ Email: req.body.Email, Password: req.body.Password }).exec();
+
+    if (student) {
+      // Check if the status is true
+      if (student.Status==true) {
+        // Successful login
+   
+        res.status(200).json({ result: true });
+      } else {
+        // Status is false
+      
+        res.status(200).json({ result: false });
+      }
+    } else {
+      // student not found
+     
+      res.status(200).json({ result: false });
+    }
+  } catch (error) {
+    // Error occurred
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
+
+// Endpoint for counselor login
+// app.post('/api/counsellor/login', async (req, res) => {
+
+//   try {
+//     // Find the counselor in the database
+//     const coun = await obj.counsellor.findOne({ Email: req.body.Email, Password: req.body.Password }).exec();
+//     console.log(coun+ "outs");
+//     if (coun) {
+//       // Check if the status is true
+//       if (coun.Status==true) {
+//         // Successful login
+//         console.log(coun+ "is");
+//         res.status(200).json({ result: true });
+//       } else {
+//         // Status is false
+//         console.log("Sasa");
+//         res.status(200).json({ result: false });
+//       }
+//     } else {
+//       // Counselor not found
+//       res.status(200).json({ result: false });
+//     }
+//   } catch (error) {
+//     // Error occurred
+//     console.error(error);
+//     res.status(500).json({ error: 'An error occurred' });
+//   }
+// });
+
+
+
+app.post('/api/counsellor/login', async (req, res) => {
+  
+
+  try {
+    // Find the user in the database
+    const counselor = await obj.counsellor.findOne({ Email: req.body.Email, Password: req.body.Password }).exec();
+
+    if (counselor) {
+      console.log(counselor);
+      // Check if the status is true
+      if (counselor.Status == 'true') {
+        // Successful login
+        console.log("if");
+        res.status(200).json({ result: true });
+      } else {
+        // Status is false
+        console.log("else");
+        res.status(200).json({ result: false });
+      }
+    } else {
+      // counsellor not found
+      console.log("not");
+      res.status(200).json({ result: false });
+    }
+  } catch (error) {
+    // Error occurred
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
 
 //Quiz APIS
 app.use('/api/ChemistryQuiz', chemistry);

@@ -1,0 +1,27 @@
+.subject-marks-container {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .subject-bar {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .bar {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    background-color: #ccc;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+    padding: 0 10px;
+  }
+  
+  .bar span {
+    display: inline-block;
+    height: 100%;
+    background-color: #337ab7;
+  }
+  
