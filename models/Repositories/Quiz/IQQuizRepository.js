@@ -3,7 +3,7 @@ const obj = require('../../ModelSchema');
 
 const GetQuestions = (req, res) => {
   obj.IQQuestion.aggregate([
-    { $sample: { size: 30 } }
+    { $sample: { size: 5 } }
   ])
     .then(questions => {
       res.json(questions);
@@ -18,13 +18,14 @@ const GetQuestions = (req, res) => {
 
 const PostResult = async (req, res) => {
     const result = new obj.IQResult({
+      email:req.body.email,
       chapter: req.body.chapter,
       totalMarks: req.body.totalMarks,
       obtainedMarks: req.body.obtainedMarks,
       timeTaken: req.body.timeTaken,
       dateTime:req.body.dateTime
     });
-  
+  console.log(result);
     result.save()
       .then(() => {
         res.status(201).json({

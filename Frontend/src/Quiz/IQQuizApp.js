@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 import '../App.css';
 
@@ -67,12 +68,14 @@ function App() {
     }
     if (currentQuestionIndex === questions.length - 1) {
       const result = {
-        chapter: 'bbbb',
+        email:Cookies.get('Email'),
+        chapter: 'iQ',
         totalMarks: questions.length,
         obtainedMarks: score,
         timeTaken: totalTime,
         dateTime: new Date().toISOString() // Adds the current date and time in ISO format
       };
+      alert("result is "+result.chapter+ result.totalMarks+result.obtainedMarks+ result.timeTaken+result.dateTime);
       axios.post('http://localhost:5000/api/IQQuiz/Results', result)
         .then(response => {
           console.log(response.data.message);

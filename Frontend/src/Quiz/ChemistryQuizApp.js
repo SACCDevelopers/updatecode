@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 import '../App.css';
 
@@ -15,10 +16,10 @@ function App() {
 
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  
+  const chapterName = params.get('chapter');
 
   useEffect(() => {
-    const chapterName = params.get('chapter');
+    
   
     axios.get('http://localhost:5000/api/ChemistryQuiz/Questions', {
       params: {
@@ -71,7 +72,8 @@ function App() {
     }
     if (currentQuestionIndex === questions.length - 1) {
       const result = {
-        chapter: 'bbbb',
+        email:Cookies.get('Email'),
+        chapter: chapterName,
         totalMarks: questions.length,
         obtainedMarks: score,
         timeTaken: totalTime,

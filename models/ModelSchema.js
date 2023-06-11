@@ -23,6 +23,12 @@ const universityQuestionSchema = new mongoose.Schema({
 });
 
 const QuizResultSchema = new mongoose.Schema({
+
+  email:{
+
+    type:String,
+    required:true
+  },
   chapter: {
     type: String,
     required: true
@@ -210,7 +216,25 @@ const CounsellorSchema = new mongoose.Schema(
     }, 
   });
   
+
+  //link schema
+  const linksSchema = new mongoose.Schema({ 
+    _id: {
+      type: String,
+     
+    },
+    Title: {
+      type: String,
+      required: true,
+    },
+    Link: {
+     Type:String
+     
+    }
+  });
+
   const Request = mongoose.model('Request', requestSchema); 
+  const link=mongoose.model('link',linksSchema);
 
 
 
@@ -278,5 +302,6 @@ module.exports = {
   ComsatsResult,
   student,
   counsellor,
-  Request
+  Request,
+  link
 };

@@ -403,6 +403,21 @@ app.post('/api/counsellor/login', async (req, res) => {
   }
 });
 
+
+//Getting links
+app.get('/api/link', async (req, res) => {
+  try {
+    console.log(req.body.Title)
+    const links = await obj.link.findOne({ Title: req.body.Title});
+  
+    res.status(200).json({ result: links.Link });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error retreiving link');
+  }
+});
+
+
 //Quiz APIS
 app.use('/api/ChemistryQuiz', chemistry);
 app.use('/api/EnglishQuiz', english);

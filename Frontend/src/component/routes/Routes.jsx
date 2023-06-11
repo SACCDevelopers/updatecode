@@ -28,7 +28,15 @@ import EnglishQuiz from './../../Quiz/EnglishQuizApp';
 import ComputeQuiz from './../../Quiz/ComputerQuizApp';
 import AnalyticalQuiz from './../../Quiz/IQQuizApp';
 import BasicMathQuiz from './../../Quiz/BasicMathsQuizApp';
+import VideoNotesChapter from './../../component/VideoesNotes/chapters/chapters';
 
+import VideonotesChem_Part1 from '../VideoesNotes/chapters/chem/Chem_Part1';
+import VideonotesPhysics_Part1 from '../VideoesNotes/chapters/phy/Phy_Part1';
+import VideonotesMaths_Part1 from '../VideoesNotes/chapters/maths/Maths_Part1';
+import Videonotesbasic_Maths from '../VideoesNotes/chapters/basic_math/Basic_Math';
+import VideonotesEnglish from  '../VideoesNotes/chapters/english/English';
+import VideonotesIQ from '../VideoesNotes/chapters/iq/IQ';
+import VideoNotesNextPage from '../VideoesNotes/chapters/onclickpageshow/NextPage.';
 
 
 
@@ -48,7 +56,7 @@ function Routs() {
           <Route path='/chapter/basicmaths' element={<Basic_Maths/>}/>
           <Route path='/chapter/english' element={<English/>}/>
           <Route path='/chapter/iq' element={<IQ/>}/>
-          <Route path='/chapter/nextpage/:chapter' element={<NextPage/>}/>  
+          <Route path='/chapter/nextpage' element={<NextPage/>}/>  
 
           <Route path='/student-signup' element={<Student_Signup/>} />
           <Route path='/counselor-signup' element={<Counselor_Signup/>}/>
@@ -68,6 +76,19 @@ function Routs() {
           <Route path="/english_quiz" element={<EnglishQuiz/>} />
           <Route path="/computer_quiz" element={<ComputeQuiz/>} />
           <Route path="/Analytical&IQ_quiz" element={<AnalyticalQuiz/>} />
+
+          <Route path="/videonoteschapter" element={<VideoNotesChapter/>} />
+          <Route path='/videonote/chapter/chemistry' element={<VideonotesChem_Part1/>}/>
+          <Route path='/videonote/chapter/physics' element={<VideonotesPhysics_Part1/>}/>
+          <Route path='/videonote/chapter/maths' element={<VideonotesMaths_Part1/>}/>
+          <Route path='/videonote/chapter/basicmaths' element={<Videonotesbasic_Maths/>}/>
+          <Route path='/videonote/chapter/english' element={<VideonotesEnglish/>}/>
+          <Route path='/videonote/chapter/iq' element={<VideonotesIQ/>}/>
+          //<Route path='videonote/chapter/nextpage' element={<NextPage/>}/>  
+          <Route path='/videonotes/chapter/nextpage' element={<VideoNotesNextPage/>}/>  
+
+
+          
          
             </Routes>
           

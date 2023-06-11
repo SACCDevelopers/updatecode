@@ -18,6 +18,8 @@ const GetQuestions =  (req, res) => {
 
 const PostResult = async (req, res) => {
     const result = new obj.ChemistryResult({
+      
+      email:req.body.email,
       chapter: req.body.chapter,
       totalMarks: req.body.totalMarks,
       obtainedMarks: req.body.obtainedMarks,
